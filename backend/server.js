@@ -1,6 +1,7 @@
 // ENTRY POINT FOR SERVER/BACKEND
 import express from 'express';
 import colors from 'colors';
+import { errorHandler, notFound } from './middleware/errorMiddleware.js';
 import dotenv from 'dotenv';
 // mongodb / mongoose
 import connectDB from './config/db.js';
@@ -16,6 +17,8 @@ connectDB();
 
 const app = express();
 
+
+
 // route
 app.get('/', (req, res) => {
   res.send('API is running......');
@@ -23,13 +26,13 @@ app.get('/', (req, res) => {
 
 app.use('/api/products', productRoutes);
 
+app.use(notFound);
+
+app.use(errorHandler);
+
 
 const PORT = process.env.PORT || 5000
 
 app.listen(PORT, () => {
   console.log(`Server is runnning in ${process.env.NODE_ENV} mode on port ${PORT}`.yellow.bold);
 });
-
-
-
-// @ video 9 custom error handling @ 00:26
