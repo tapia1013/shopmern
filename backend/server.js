@@ -1,9 +1,16 @@
 // ENTRY POINT FOR SERVER/BACKEND
 import express from 'express';
 import dotenv from 'dotenv';
+// mongodb / mongoose
+import connectDB from './config/db.js';
 import products from './data/products.js';
 
-dotenv.config()
+
+
+dotenv.config();
+
+// call connectDB
+connectDB();
 
 const app = express();
 
@@ -21,8 +28,8 @@ app.get('/api/products/:id', (req, res) => {
   // get url product id
   const product = products.find(p => p._id === req.params.id);
 
-  res.json(product)
-})
+  res.json(product);
+});
 
 
 const PORT = process.env.PORT || 5000
