@@ -2,10 +2,10 @@ import { createStore, combineReducers, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 // to use redux devtools
 import { composeWithDevTools } from 'redux-devtools-extension';
-
+import { productListReducer } from './reducers/productReducers';
 
 const reducer = combineReducers({
-
+  product: productListReducer
 });
 
 const initialState = {};
@@ -19,6 +19,5 @@ const store = createStore(
   )
 );
 
-// @ video 3 Product list rdeucer and action
 
 export default store;
