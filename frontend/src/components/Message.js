@@ -9,7 +9,7 @@ const Message = ({ variant, children }) => {
   )
 };
 
-Message.defaultPorops = {
+Message.defaultProps = {
   variant: 'info'
 }
 
