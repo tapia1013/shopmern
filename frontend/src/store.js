@@ -11,22 +11,28 @@ import {
   productDetailsReducer
 } from './reducers/productReducers';
 import { cartReducer } from './reducers/cartReducers';
+import { userLoginReducer } from './reducers/userReducers';
 
 
 const reducer = combineReducers({
   productList: productListReducer,
   productDetails: productDetailsReducer,
-  cart: cartReducer
+  cart: cartReducer,
+  userLogin: userLoginReducer,
 });
 
 // we parse the saved cartItems from cartActions here
 const cartItemsFromStorage = localStorage.getItem('cartItems') ? JSON.parse(localStorage.getItem('cartItems')) : []
 
+const userInfoFromStorage = localStorage.getItem('userInfo') ? JSON.parse(localStorage.getItem('userInfo')) : null
 
 const initialState = {
   // LS items to initialState
   cart: {
     cartItems: cartItemsFromStorage
+  },
+  userLogin: {
+    userInfo: userInfoFromStorage
   }
 };
 
