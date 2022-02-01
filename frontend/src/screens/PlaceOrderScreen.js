@@ -4,9 +4,13 @@ import { Button, Row, Col, ListGroup, Image, Card } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import Message from '../components/Message';
 import CheckoutSteps from '../components/CheckoutSteps';
+import { createOrder } from '../actions/orderActions';
 
 
 const PlaceOrderScreen = () => {
+  // dispatch our order actions
+  const dispatch = useDispatch();
+
   const cart = useSelector(state => state.cart);
 
   const addDecimals = (num) => {
@@ -27,7 +31,15 @@ const PlaceOrderScreen = () => {
 
 
   const placeOrderHandler = () => {
-    console.log('placeOrderHandler');
+    dispatch(createOrder({
+      orderItems: cart.cartItems,
+      shippingAddress: cart.shippingAddress,
+      paymentMethod: cart.paymentMethod,
+      itemsPrice: cart.itemsPrice,
+      shippingPrice: cart.shippingPrice,
+      taxPrice: cart.taxPrice,
+      totalPrice: cart.totalPrice
+    }))
   }
 
   return (
